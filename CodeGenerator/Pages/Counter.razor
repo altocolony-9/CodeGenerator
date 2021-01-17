@@ -1,0 +1,48 @@
+﻿@page "/counter"
+
+
+<h1>Commandオブジェクト.csを生成</h1>
+
+<div>
+    <label class="col-form-label">ファイル名</label>
+    <input class="form-control" @bind-value="_fileName" />
+</div>
+
+<div>
+    <label class="col-form-label">クラス名</label>
+    <input class="form-control" @bind-value="_className" />
+</div>
+
+<div>
+    <label class="col-form-label">コンストラクタ名</label>
+    <input class="form-control" @bind-value="_counstructorName" />
+</div>
+
+<div>
+    <label class="col-form-label">名前空間</label>
+    <input class="form-control" @bind-value="_nameSpace" />
+</div>
+
+<div>
+    <label class="col-form-label">コンストラクタ引数</label>
+    @foreach(var arg in _argments)
+    {
+        <div>
+            <labal class="col-form-label">型</labal>
+            <input class="form-control" @bind-value="arg.Type" />
+
+            <labal class="col-form-label">引数名</labal>
+            <input class="form-control" @bind-value="arg.Name" />
+        </div>
+    }
+</div>
+
+<div>
+    <button class="btn btn-primary" @onclick="Add">引数を追加</button>
+    
+</div>
+
+<div>
+    <label class="col-form-label">フォルダパス</label>
+    <input class="form-control" @bind-value="_folderPath"/>
+</div>

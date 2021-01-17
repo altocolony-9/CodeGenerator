@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace %NameSpace%
+{
+    public class %ClassName%
+    {
+        public %Constructor%(%Type0% %Argument0%)
+        {
+            %Property% = %Argument0%;
+        }
+
+        public %Type0% %Property% { get; set; }
+    }
+}
