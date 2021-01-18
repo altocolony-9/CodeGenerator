@@ -23,7 +23,7 @@ namespace CodeGenerator.Pages
         /// <typeparam name="Type"></typeparam>
         /// <param name="args">型、引数名、生成フラグ</param>
         /// <returns>型、プロパティ名</returns>
-        public IDictionary<string,string> GeneratePropName<Type>(Type args) where Type : IEnumerable<IArgument>
+        public IDictionary<string, string> GeneratePropName<Type>(Type args) where Type : IEnumerable<IArgument>
         {
             Dictionary<string, string> bigPropName = new Dictionary<string, string>();
             if (args == null)
