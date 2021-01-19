@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using CodeGenerator.Models;
 
 namespace CodeGenerator.Pages
 {
-    public partial class Counter : ICommandGenerator
+    public partial class CommandGenerator : ICommandGenerator
     {
         private string _nameSpace;
         private string _counstructorName;
@@ -16,7 +17,7 @@ namespace CodeGenerator.Pages
         private IList<Arguments> _argments = new List<Arguments>();
 
         private string _folderPath;
-
+        private readonly string _templateFilePath = @"\File\SampleCommand.txt";
         /// <summary>
         /// プロパティ名生成
         /// </summary>
@@ -64,8 +65,29 @@ namespace CodeGenerator.Pages
 
             return propContext;
         }
-        //public int MyProperty { get; set; }
 
+        public IList<(int index, string name)> FetchTemplate()
+        {
+            var lines = File.ReadLines(_templateFilePath, Encoding.UTF8);
+            var indexLines = lines.Select((name,index) => (index, name)).ToList();
+            return indexLines;
+        }
+
+        public string GenerateConstructor()
+        {
+            var oneLine = "@\t\tpublic %Constructor%(";
+            string arg = string.Empty;
+            foreach(var argument in _argments)
+            {
+                if (_argments.IndexOf(argument) == _argments.Count - 1)
+                {
+                    arg += $"@%{argument.Type}% %{argument.Name}%)\n";
+                }
+                arg += $"%{argument.Type}% %{argument.Name}%,";
+            }
+            arg += "@\t";
+        }
+      
         /// <summary>
         /// コンストラクタの引数欄追加
         /// </summary>
