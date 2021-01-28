@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
 using CodeGenerator.Models;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace CodeGenerator.Pages
 {
@@ -16,8 +17,6 @@ namespace CodeGenerator.Pages
         private string _className;
         private IList<Arguments> _argments = new List<Arguments>();
 
-        private string _folderPath;
-        private readonly string _templateFilePath = @"\File\SampleCommand.txt";
         /// <summary>
         /// プロパティ名生成
         /// </summary>
@@ -66,13 +65,7 @@ namespace CodeGenerator.Pages
             return propContext;
         }
 
-        public IList<(int index, string name)> FetchTemplate()
-        {
-            var lines = File.ReadLines(_templateFilePath, Encoding.UTF8);
-            var indexLines = lines.Select((name,index) => (index, name)).ToList();
-            return indexLines;
-        }
-
+        /*
         public string GenerateConstructor()
         {
             var oneLine = "@\t\tpublic %Constructor%(";
@@ -87,7 +80,7 @@ namespace CodeGenerator.Pages
             }
             arg += "@\t";
         }
-      
+      */
         /// <summary>
         /// コンストラクタの引数欄追加
         /// </summary>
@@ -96,6 +89,21 @@ namespace CodeGenerator.Pages
             _argments.Add(new Arguments());
         }
 
-       
+        /// <summary>
+        /// アップロードファイル読み込み
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        private async Task ReadUploadFile(InputFileChangeEventArgs e)
+        {
+            var stream = e.File.OpenReadStream();
+            using (var reader = new StreamReader(stream))
+            {
+                var text = await reader.ReadToEndAsync();
+            }
+
+        }
+
+
     }
 }

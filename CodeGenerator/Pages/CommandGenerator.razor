@@ -42,7 +42,4 @@
     
 </div>
 
-<div>
-    <label class="col-form-label">フォルダパス</label>
-    <input class="form-control" @bind-value="_folderPath"/>
-</div>
+<InputFile OnChange="@ReadUploadFile"/>
