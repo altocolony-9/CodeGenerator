@@ -3,21 +3,19 @@
  * %使用禁止
  * 1つのインデントにつき、4半角スペース
 */
-/*
+
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace %NameSpace%
 {
     public class %ClassName%
     {
-        public %Constructor%(%Type0% %Argument0%)
+        public %Constructor%(%Type Argument%)
         {
-            %Property% = %Argument0%;
+            %InsertProperty%
         }
 
-        public %Type0% %Property% { get; set; }
+        %SetProperty%
     }
 }
-*/
